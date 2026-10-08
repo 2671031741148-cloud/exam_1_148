@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="exam_1_148"
+        android:label="EcoCarbon"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

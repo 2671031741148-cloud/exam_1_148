@@ -1,19 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:exam_1_148/services/auth_service.dart';
-
+ 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
-
+ 
 class _LoginScreenState extends State<LoginScreen> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   final _auth = AuthService();
   bool _loading = false;
-
+ 
   Future<void> _run(Future<void> Function() job, {String? ok}) async {
     setState(() => _loading = true);
     try {
@@ -27,11 +27,11 @@ class _LoginScreenState extends State<LoginScreen> {
       if (mounted) setState(() => _loading = false);
     }
   }
-
+ 
   void _msg(String m) {
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(m)));
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(children: [
               const Icon(Icons.eco, size: 64, color: Colors.green),
               const SizedBox(height: 8),
-              const Text('EcoCarbon Tracker',
+              const Text('EcoCarbon',
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
               const SizedBox(height: 24),
               TextField(

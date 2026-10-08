@@ -3,25 +3,25 @@ import 'package:exam_1_148/model/app_user.dart';
 import 'package:exam_1_148/model/carbon_record.dart';
 import 'package:exam_1_148/services/auth_service.dart';
 import 'package:exam_1_148/services/firestore_service.dart';
-
+ 
 import 'emission_form_tab.dart';
 import 'emission_display_tab.dart';
-
+ 
 class MainHomeScreen extends StatefulWidget {
   final AppUser currentUser;
   const MainHomeScreen({super.key, required this.currentUser});
-
+ 
   @override
   State<MainHomeScreen> createState() => _MainHomeScreenState();
 }
-
+ 
 class _MainHomeScreenState extends State<MainHomeScreen> {
   int _currentIndex = 0;
   final _db = FirestoreService();
-
+ 
   void _toast(String m) =>
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(m)));
-
+ 
   Future<void> _addRecord(CarbonRecord record) async {
     try {
       await _db.create(record);
@@ -31,7 +31,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       _toast('บันทึกไม่สำเร็จ: $e');
     }
   }
-
+ 
   Future<void> _updateRecord(CarbonRecord record) async {
     if (!widget.currentUser.isAdmin) return _toast('ไม่มีสิทธิ์แก้ไขข้อมูล');
     try {
@@ -41,7 +41,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       _toast('แก้ไขไม่สำเร็จ: $e');
     }
   }
-
+ 
   Future<void> _deleteRecord(String id) async {
     if (!widget.currentUser.isAdmin) return _toast('ไม่มีสิทธิ์ลบข้อมูล');
     try {
@@ -50,7 +50,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       _toast('ลบไม่สำเร็จ: $e');
     }
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     final user = widget.currentUser;
@@ -70,7 +70,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
         },
       ),
     ];
-
+ 
     return Scaffold(
       appBar: AppBar(
         title: Row(children: [
@@ -81,7 +81,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           ),
           const SizedBox(width: 10),
           const Flexible(
-            child: Text('EcoCarbon Tracker',
+            child: Text('EcoCarbon',
                 overflow: TextOverflow.ellipsis, style: TextStyle(fontWeight: FontWeight.bold)),
           ),
         ]),
@@ -114,3 +114,4 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     );
   }
 }
+ 
